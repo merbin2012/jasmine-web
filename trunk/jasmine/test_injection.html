@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script type="text/javascript" src="test_handler.js"></script>
+<script>
+
+SO.count_script();
+
+
+count_script('before');
+xhr_inject(); 
+//xhr_eval();
+setTimeout('count_script("after")', 3000);
+
+setTimeout('JO.test_jo()', 3000);
+ 
+//xhr_inject();
+
+//JO.test_jo();
+</script>
+
+
+<title>Test Trace User Interaction</title>
+</head>
+<body name="body">
+<A HREF="TestRecInteraction_2.html"  name="link2"><B><I>ddd<IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></I></B></A><BR>
+
+<A HREF="TestRecInteraction_2.html"  name="link2"><IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></A>
+
+<FORM ACTION="" METHOD=POST name="theForm">
+<div name="div_1">
+content: <br>
+this is the first line<br>
+and second<br>
+third<br>
+</div>	
+
+<SELECT NAME="ele-sel">
+	<option selected="selected" value="">Please Select</option>
+	<OPTION VALUE="sel-a" >a</OPTION>
+	<OPTION VALUE="sel-b" >b</OPTION>
+	<OPTION VALUE="sel-c" >c</OPTION>
+	<OPTION VALUE="sel-d" >d</OPTION>
+</SELECT>
+name: 
+<INPUT NAME="realname" onclick='xhr_inject(); count_script("after"); setTimeout ( "JO.test_jo()", 3000 ); ' >
+
+Email:<INPUT NAME="_email">
+
+destination: <INPUT type= "password" NAME="desination" onclick="var apple = new Apple('big'); alert(apple.getInfo);"><br>
+
+<input type="radio" checked="" value="38" name="id[11]"/>
+1. Soft Carry Case<br/>
+
+<input type="radio" value="39" name="id[11]"/>
+2. Hard Shell Carry Case (+US$2.00)<br/><br/>
+
+<input type="radio" name="group1" value="Milk"> Milk <br>
+<input type="radio" name="group1" value="Butter"> Butter <br>
+<input type="radio" name="group1" value="Cheese"> Cheese <br>
+<input type="checkbox" value="1" id="checkout-ship-same" name="checkout-ship-same"/>
+
+<input type="hidden" value="77" name="products_id"/>
+<input type="image" border="0" title=" Add to Cart " alt="Add to Cart" src="button_in_cart.gif"/>
+
+<TEXTAREA NAME="textarea" ROWS="5" COLS="20"></TEXTAREA> <br>
+
+<input type="file" name="aFile"><br>
+
+<IMG SRC="logo.png" WIDTH="250" HEIGHT="61" BORDER="0" ALT="">
+
+<TEXTAREA NAME="" ROWS="15" COLS="150" id=t-area></TEXTAREA> <br>
+
+
+
+<INPUT TYPE="reset"><input type="button" VALUE="do nothing" >
+</FORM>
+
+
+
+<iframe src="thread_frame.js" width="0" height="0" frameborder="0"  name="myInlineFrame"></iframe>
+</BODY>
+</html>

@@ -1,0 +1,175 @@
+\documentclass[a4paper,twocolumn,10pt]{article}
+\usepackage{usenix,epsfig,endnotes}
+\usepackage{listings}
+\usepackage{xspace}
+
+\newcommand{\jasmine}{{\textsc{Jasmine}}\xspace}
+
+\def\denseitems{
+  \itemsep1pt plus1pt minus1pt
+  \parsep0pt plus0pt
+  \parskip0pt\topsep0pt}
+
+\begin{document}
+
+%don't want date printed
+\date{}
+
+%make title bold and 14 pt font (Latex default is non-bold, 16 pt)
+\title{\Large \bf Specification of \jasmine}
+\author{
+{\rm Wanchun Li}\\
+Georgia Institute of Technology\\
+wli7@gatech.edu
+}
+
+\maketitle
+\pagestyle{plain}
+
+%%-------------------------------------------------------------------------
+\section{Introduction}
+\jasmine (\underline{JA}vaScript \underline{M}anipulation and \underline{In}strumentation at \underline{E}xecution-time) is tool for run-time JavaScript instrumentation and code manipulation. This document is the specification of \jasmine, including requirements, system design, and API design.
+
+The goal is to instrument code at run-time for two benefits: to handle dynamism of JavaScript and to avoid a proxy.\footnote{An instrumentation proxy complicates the deployment, increases the costs of maintenance, and may introduce performance overhead under heavy workload.}
+%%-------------------------------------------------------------------------
+
+\section{Requirements}
+This section describes requirements of run-time instrumentation and requirements of run-time code manipulation.
+\subsection{Requirements of Execution-time Instrumentation}
+Instrumentation point lists
+\begin{itemize}\denseitems
+  \item Function entry/exit
+  \item Basic Block entry/exit
+  \item Branch entry/exit
+  \item Loop entry/exit
+  \item Statement before/after
+
+\noindent and
+  \item data-flow alike analysis. It is incomplete analysis before of eval() or innerHTML)
+  \begin{itemize}\denseitems
+    \item parameter trace
+    \item def-use of a particular variable
+  \end{itemize}
+\end{itemize}
+
+
+\subsection{Requirements of Execution-time Code Manipulation}
+libraries. Dynamic generated code from third party. Improve program Examples
+\begin{itemize}\denseitems
+    \item global variables
+    \item iframe pollutes namespace
+    \item string concate
+    \item JSLint for more
+\end{itemize}
+
+Rewrite code not using eval() but the following code
+\begin{quote}
+    function hello(){\\
+		console.log('hello outside');\\
+	}	
+	hello();
+	var scr = document.createElement('script');
+	scr.text = 'var t = function(){console.log("inner hello")}';
+	document.getElementsByTagName('head')[0].appendChild(scr);
+	hello = t;
+	hello();
+\end{quote}
+
+
+
+\section{Execution Mode}
+\subsection{Silent Mode}
+The user specifies the portion of the program to instrument: the src and the function.
+
+\subsection{Interactive Mode}
+No instrumentation is executed until an event handler is trigger.
+
+\section{Design}
+\subsection{Instrumentation Points}
+  \begin{itemize}\denseitems
+    \item func\_entry/exit
+    \begin{quote}
+    /*function*/
+    \end{quote}
+
+    \item bbl\_entry/exit
+    \begin{quote}
+    /*basic block*/
+    \end{quote}
+
+    \item brc\_entry/exit
+    \begin{quote}
+    /*branch*/
+    \end{quote}
+
+    \item lp\_entry/exit
+    \begin{quote}
+    /*loop*/
+    \end{quote}
+
+    \item stat\_before/after
+    \begin{quote}
+    /*statement*/
+    \end{quote}
+
+  \end{itemize}
+\subsection{Silent Mode}
+\textbf{Probe}\\ probe = {uri, func, inst\_points, inst\_code}
+\begin{quote}
+uri: source of js;\\
+func: name of the function to be instrumented\\
+inst\_points: instrument point\\
+inst\_code: instrument code\\
+\end{quote}
+\textbf{Instrumentation implementation}\\
+Rewrite the source code into another file that overwrites the original methods. Reload the rewritten source code.
+Algorithm consisting of two steps:
+\begin{enumerate}
+  \item all script sources that have functions to be instrumented register to the window object
+  \item window.onload = the following sequence of actions
+  \begin{enumerate}
+    \item rewrite code to insert instrumentations
+    \item load rewritten code
+    \item check whether all rewritten code is loaded
+    \item if not, wait; otherwise, finishing onload.
+  \end{enumerate}
+\end{enumerate}
+
+\subsection{Interactive Mode}
+\textbf{Probe}\\ probe = (evt, ele, uri, func, inst\_points, inst\_code)
+\begin{quote}
+evt: event fired
+ele: element on which an event fired
+uri: source of js;
+func: name of the function to be instrumented
+inst\_points: instrument point
+inst\_code: instrument code
+\end{quote}
+
+Need to register eventListeners.\\
+
+Using eval() to execute rewritten code. 
+
+Separated implementation from instrumenting eval (See Section~\ref{sec_relatedIssues}, Issue~\ref{eval}).
+
+\section{Related Issues}\label{sec_relatedIssues}
+\begin{enumerate}\denseitems
+    \item Dynamic code injection
+        \begin{enumerate}\denseitems
+            \item if the developer has the knowledge of the source code, instrument the source before injection
+            \item if the developer does not have (e.g., legacy code, code from other domain), a message model monitoring code's altering (i.e., to check the change of script objects in every certain time)
+        \end{enumerate}
+
+
+    \item eval()~\label{eval}: rewritten. eval is rewritable by changing function behavior. So rewrite the string parameter.
+
+    \item register eventListeners: parsing source code to build a event listeners storage list. Instrument the event handlers.
+
+    \item top-level code instrumentation: proxy
+
+\end{enumerate}
+
+
+
+
+\end{document} 
