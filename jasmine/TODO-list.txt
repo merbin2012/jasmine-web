@@ -1,0 +1,20 @@
+1. rewrite an event handler that is a property or attribute of an HTML Element:
+-- In the rewrite function, add a rewrite flag, or find an alternative.
+
+2. rewrite an event handler added dynamically (i.e., addEventListener in FX and attachEvent in IE):
+
+-- The hanlder is anonymous function:
+	document.forms[0].realname.addEventListener('click', function(){console.log('anonymous handler')}, false);	
+	document.forms[0].realname.removeEventListener('click', function(){console.log('anonymous handler')}, false);	
+	var _func = function(){console.log('anonymous function')};
+	_func = rewrite(_func);
+	document.forms[0].realname.addEventListener('click', _func, false);
+	
+-- The handler is a function with name:
+	hello_4 = rewrite(hello_4);
+	document.forms[0].realname.addEventListener('click', hello_4, false);
+
+3. js_operator.js: DEBUG: line 63.
+
+4. implement web_worker
+--scripts retrived by DOM.getElementsByTag('script') stored as properties of a function/object, so that they are hashtabled.

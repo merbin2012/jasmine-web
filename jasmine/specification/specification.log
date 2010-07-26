@@ -1,0 +1,185 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=latex 2009.10.15)  25 JUL 2010 17:04
+entering extended mode
+**D:/Apache*Software*Foundation/Tomcat*6.0/webapps/ROOT/jsdyninstrument/jasmine
+/specification/specification.tex
+
+("D:/Apache Software Foundation/Tomcat 6.0/webapps/ROOT/jsdyninstrument/jasmine
+/specification/specification.tex"
+LaTeX2e <2005/12/01>
+Babel <v3.8l> and hyphenation patterns for english, dumylang, nohyphenation, ge
+rman, ngerman, german-x-2009-06-19, ngerman-x-2009-06-19, french, loaded.
+("C:\Program Files\MiKTeX 2.8\tex\latex\base\article.cls"
+Document Class: article 2005/09/16 v1.4f Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.8\tex\latex\base\size10.clo"
+File: size10.clo 2005/09/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("D:\Apache Software Foundation\Tomcat 6.0\webapps\ROOT\jsdyninstrument\jasmine
+\specification\usenix.sty"
+("C:\Program Files\MiKTeX 2.8\tex\latex\psnfss\times.sty"
+Package: times 2005/04/12 PSNFSS-v9.2a (SPQR) 
+))
+("C:\Program Files\MiKTeX 2.8\tex\latex\graphics\epsfig.sty"
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+
+("C:\Program Files\MiKTeX 2.8\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.8\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+("C:\Program Files\MiKTeX 2.8\tex\latex\graphics\graphics.sty"
+Package: graphics 2006/02/20 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.8\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.8\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: dvips.def on input line 90.
+
+("C:\Program Files\MiKTeX 2.8\tex\latex\graphics\dvips.def"
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+\epsfxsize=\dimen105
+\epsfysize=\dimen106
+)
+("C:\Program Files\MiKTeX 2.8\tex\latex\ltxmisc\endnotes.sty"
+\c@endnote=\count87
+\endnotesep=\dimen107
+\@enotes=\write3
+)
+("C:\Program Files\MiKTeX 2.8\tex\latex\listings\listings.sty"
+\lst@mode=\count88
+\lst@gtempboxa=\box26
+\lst@token=\toks15
+\lst@length=\count89
+\lst@currlwidth=\dimen108
+\lst@column=\count90
+\lst@pos=\count91
+\lst@lostspace=\dimen109
+\lst@width=\dimen110
+\lst@newlines=\count92
+\lst@lineno=\count93
+\lst@maxwidth=\dimen111
+
+("C:\Program Files\MiKTeX 2.8\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count94
+\lst@skipnumbers=\count95
+\lst@framebox=\box27
+)
+("C:\Program Files\MiKTeX 2.8\tex\latex\listings\listings.cfg"
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+("C:\Program Files\MiKTeX 2.8\tex\latex\tools\xspace.sty"
+Package: xspace 2006/05/08 v1.12 Space after command names (DPC,MH)
+)
+("D:\Apache Software Foundation\Tomcat 6.0\webapps\ROOT\jsdyninstrument\jasmine
+\specification\specification.aux")
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 13.
+
+("C:\Program Files\MiKTeX 2.8\tex\latex\psnfss\ot1ptm.fd"
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+\c@lstlisting=\count96
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 26.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/sc' in size <14.4> not available
+(Font)              Font shape `OT1/ptm/b/sc' tried instead on input line 26.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 26.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 26.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 26.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 30.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 31.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 31.
+
+Underfull \hbox (badness 2035) in paragraph at lines 38--38
+[]\OT1/ptm/b/n/12 Requirements of Execution-time In-
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 41.
+("C:\Program Files\MiKTeX 2.8\tex\latex\psnfss\omsptm.fd"
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 41.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 50.
+
+Underfull \hbox (badness 10000) in paragraph at lines 67--76
+\OT1/ptm/m/n/10 hello(); var scr = doc-u-
+ []
+
+
+Overfull \hbox (54.96376pt too wide) in paragraph at lines 67--76
+\OT1/ptm/m/n/10 ment.getElementsByTagName('head')[0].appendChild(scr);
+ []
+
+[1
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 119--123
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 149--150
+
+ []
+
+
+Underfull \hbox (badness 1622) in paragraph at lines 160--161
+\OT1/ptm/m/n/10 model mon-i-tor-ing code's al-ter-ing (i.e., to
+ []
+
+[2]
+("D:\Apache Software Foundation\Tomcat 6.0\webapps\ROOT\jsdyninstrument\jasmine
+\specification\specification.aux") ) 
+Here is how much of TeX's memory you used:
+ 1903 strings out of 495286
+ 27470 string characters out of 3180317
+ 78717 words of memory out of 3000000
+ 5122 multiletter control sequences out of 15000+200000
+ 12828 words of font info for 35 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 32i,8n,32p,524b,245s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on specification.dvi (2 pages, 13132 bytes).

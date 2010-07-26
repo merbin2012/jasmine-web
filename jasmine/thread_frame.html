@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<script type="text/javascript" src="XHR_operator.js"></script>
+<script type="text/javascript" src="script_operator.js"></script>
+<script type="text/javascript">
+/**/
+var scripts = parent.document.getElementsByTagName("script");
+
+var script_object = {};
+var cntr = scripts.length;
+
+function monitor_script(){	
+	console.log('monitor start...');
+	while(true){
+		var scripts_to_check = parent.document.getElementsByTagName("script");
+		var l = scripts_to_check.length;
+		if (cntr != l)	break;
+	}	
+	console.log('monitor done!');
+}
+
+XO.xhr_hanlder( monitor_script );
+
+
+function fake(){
+	console.log('do something fake');
+}
+
+XO.xhr_hanlder(fake);
+
+</script>
+</HEAD>
+<BODY>
+ hello iframe!
+ </BODY>
+</HTML>

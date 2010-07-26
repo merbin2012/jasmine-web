@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<script type="text/javascript" src="script_operator.js"></script>
+	<script type="text/javascript" src="instrument/probe_operator.js"></script>
+	
+	<script type="text/javascript">
+	
+	</script>
+	<title>Test Trace User Interaction</title>
+</head>
+<body name="body" >
+<A HREF="TestRecInteraction_2.html"  name="link2"><B><I>ddd<IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></I></B></A><BR>
+
+<A HREF="TestRecInteraction_2.html"  name="link2"><IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></A>
+
+<FORM ACTION="" METHOD=POST name="theForm">
+<div name="div_1">
+content: <br>
+this is the first line<br>
+and second<br>
+third<br>
+</div>	
+
+<SELECT NAME="ele-sel">
+	<option selected="selected" value="">Please Select</option>
+	<OPTION VALUE="sel-a" >a</OPTION>
+	<OPTION VALUE="sel-b" >b</OPTION>
+	<OPTION VALUE="sel-c" >c</OPTION>
+	<OPTION VALUE="sel-d" >d</OPTION>
+</SELECT>
+name: 
+<INPUT NAME="realname" onclick='XO.script_dom_inject(parent.document, "some script"); SO.count_script(parent.document);' >
+
+
+<script type="text/javascript"> 	
+	/*
+	document.forms[0].realname.addEventListener('click', function(){console.log('anonymous handler')}, false);	
+	document.forms[0].realname.removeEventListener('click', function(){console.log('anonymous handler')}, false);	
+	var _func = function(){console.log('anonymous function')};
+	_func = rewrite(_func);
+	document.forms[0].realname.addEventListener('click', _func, false);
+	
+	hello_4 = rewrite(hello_4);
+	document.forms[0].realname.addEventListener('click', hello_4, false);
+	*/
+</script> 
+Email:<INPUT NAME="_email">
+<script type="text/javascript"> 
+	//document.forms[0]._email.addEventListener('click', hello_4, false);
+</script> 
+
+destination: <INPUT type= "password" NAME="desination" onclick="var apple = new Apple('big'); alert(apple.getInfo);"><br>
+
+<input type="radio" checked="" value="38" name="id[11]"/>
+1. Soft Carry Case<br/>
+
+<input type="radio" value="39" name="id[11]"/>
+2. Hard Shell Carry Case (+US$2.00)<br/><br/>
+
+<input type="radio" name="group1" value="Milk"> Milk <br>
+<input type="radio" name="group1" value="Butter"> Butter <br>
+<input type="radio" name="group1" value="Cheese"> Cheese <br>
+<input type="checkbox" value="1" id="checkout-ship-same" name="checkout-ship-same"/>
+
+<input type="hidden" value="77" name="products_id"/>
+<input type="image" border="0" title=" Add to Cart " alt="Add to Cart" src="button_in_cart.gif"/>
+
+<TEXTAREA NAME="textarea" ROWS="5" COLS="20"></TEXTAREA> <br>
+
+<input type="file" name="aFile"><br>
+
+<IMG SRC="logo.png" WIDTH="250" HEIGHT="61" BORDER="0" ALT="">
+
+<TEXTAREA NAME="" ROWS="15" COLS="150" id=t-area></TEXTAREA> <br>
+
+
+
+<INPUT TYPE="reset"><input type="button" VALUE="do nothing" >
+</FORM>
+
+
+</BODY>
+</html>
+
+<script type="text/javascript">
+function hello_n(){
+//	console.log("hello_3's this: " + this.name);
+	console.log("say hello, eh..n...then do sth.");
+}
+
+function find_all_functions(){
+	for (var p in window){
+		if (typeof window[p] && typeof window[p]=='function'){
+			console.log('type: ' + typeof window[p] + '\tprop:' + p + '\n');
+			console.log(window[p].toSource());
+		}
+	}
+}
+/*
+window.addEventListener('load', 
+							function(){
+								var scripts = document.getElementsByTagName("script");
+								//console.log(scripts.length + " scripts found");
+								for (var i=0; i<scripts.length; i++){
+									console.log("===========" + i + "===========");
+									var script_src = scripts[i].innerHTML;									
+									if (script_src.length){
+										JO.do_fx_instrument(script_src);										
+									}
+								}
+							}, 
+						true);
+*/
+/*
+var f = 'global';
+function constructFunc(){
+	var f = 'local';
+	return new Function("return f");
+}
+
+console.log(constructFunc()());
+*/
+
+function hello_3(say_sth){
+//	console.log("hello_3's this: " + this.name);
+	console.log(say_sth);
+}
+
+/*
+window.addEventListener('load', 
+						function(){hello_3('window_load handler.')}, 
+						true);
+*/
+</script>
+
+</BODY>
+</html>
