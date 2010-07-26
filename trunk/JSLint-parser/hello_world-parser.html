@@ -1,0 +1,57 @@
+<html>
+<body>
+<p>Hello world Parser!</p>
+<script type="text/javascript" src="tokens.js"></script>
+<script type="text/javascript" src="parse.js"></script>
+<script type="text/javascript" src="json2.js"></script>
+
+
+<script type="text/javascript">
+
+//================================================//
+if (typeof Object.create !== 'function') {
+    Object.create = function (o) {
+        function F() {}
+        F.prototype = o;
+        return new F();
+    };
+}
+
+// Transform a token object into an exception object and throw it.
+
+Object.prototype.error = function (message, t) {
+    t = t || this;
+    t.name = "SyntaxError";
+    t.message = message;
+    throw t;
+};
+
+
+try {
+    parse = make_parse();
+
+	// We are going to make the parse function parse itself.
+	/*
+    source = make_parse.toSource ?
+            make_parse.toSource() : make_parse.toString();
+    source = "var make_parse = " + source + ";";
+    tree = parse(source);
+	*/
+	var source = //'function he(){document.write("hello world 3!");}'; 
+				"window.addEventListener('click', click_hanlder, true);";
+				//"function(b, c){var a = b + c; return a; }";
+				//document.documentElement.innerHTML;
+	tree = parse(source);
+    if (tree) {
+        document.write(JSON.stringify(tree, ['key', 'name', 'message',
+            'value', 'arity', 'first', 'second', 'third', 'fourth'], 4));
+    }
+
+} catch (e) {
+    document.write(JSON.stringify(e, ['name', 'message', 'from', 'to', 'key',
+            'value', 'arity', 'first', 'second', 'third', 'fourth'], 4));
+}
+</script>
+<pre></pre>
+</body>
+</html>
