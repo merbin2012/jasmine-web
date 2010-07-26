@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<!-- <script type="text/javascript" src="/AI/paul-function-tracer.js"></script> -->
+<script type="text/javascript" src="dom_operator.js"></script>
+<!-- <script type="text/javascript" src="/AI/tuin.js"></script> -->
+<script type="text/javascript">
+
+//addEventListener = FunctionTracer.traceFunction(addEventListener, "addEventListener");
+//load_handlers = FunctionTracer.traceFunction(add_load_handlers, "add_load_handlers");
+//focus_handler = FunctionTracer.traceFunction(focus_handler, "focus_handler");
+//click_hanlder= FunctionTracer.traceFunction(click_hanlder, "click_hanlder");
+//FunctionTracer.traceFunctionsInObject(window, "window.");
+
+function Apple (type) {
+    this.type = type;
+    this.color = 'red';
+    this.getInfo = function() {
+        var msg= this.color + ' ' + this.type + ' apple';
+    };	
+}
+
+
+function hello_1(){
+	var str = 'stringAndSubstring';
+	var sub =  str.substring(10)
+//	console.log("hello_1's this: " + this.name);
+	console.log("hello world 1!" + sub);
+}
+
+function hello_2(){
+//	console.log("hello_2's this: " + this.name);
+	console.log("hello world 2!");
+}
+
+function hello_3(){
+//	console.log("hello_3's this: " + this.name);
+	console.log("hello world 3!");
+}
+
+
+function hello_4(){
+//	console.log("hello_4's this: " + this.name);
+	console.log("hello dojo connect!");
+}
+
+function rewrite(old){	
+	console.log("rewriting " + old + "...");
+	return function(){
+		if (old.name == 0) {
+			console.log('anonymous function');
+			old[name] = 'anonymous';
+		}
+		console.log( 'add something to |' + old.name + '|');// + ', called by ' + this.name);
+		
+		console.log("old's this: " + this.name);
+		old.apply(this, arguments);//Array.prototype.splice.call(arguments, 0));
+		/*
+		try {
+			return old.apply(this, Array.prototype.splice.call(arguments, 0));
+		}
+		catch(e) {
+			console.log(e);
+		}*/
+	}
+}
+
+
+
+</script>
+
+<title>Test Trace User Interaction</title>
+</head>
+<!-- 
+<body name="body" onload="addEventListener=rewrite(addEventListener);"> -->
+
+<body name="body">
+<A HREF="TestRecInteraction_2.html"  name="link2"><B><I>ddd<IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></I></B></A><BR>
+
+<A HREF="TestRecInteraction_2.html"  name="link2"><IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></A>
+
+<FORM ACTION="" METHOD=POST name="theForm">
+<div name="div_1">
+content: <br>
+this is the first line<br>
+and second<br>
+third<br>
+</div>	
+
+<SELECT NAME="ele-sel">
+	<option selected="selected" value="">Please Select</option>
+	<OPTION VALUE="sel-a" >a</OPTION>
+	<OPTION VALUE="sel-b" >b</OPTION>
+	<OPTION VALUE="sel-c" >c</OPTION>
+	<OPTION VALUE="sel-d" >d</OPTION>
+</SELECT>
+name: 
+<!-- <INPUT NAME="realname"> -->
+<INPUT NAME="realname" onclick=hello_1() >
+<script type="text/javascript"> 
+	document.forms[0].realname.addEventListener('click', rewrite(hello_3), true);	
+
+	//document.forms[0].realname['onclick'] = hello_1;
+				//function(){console.log('set onclick property');};
+	//document.forms[0].realname['onclick'] = rewrite(document.forms[0].realname['onclick']);//document.forms[0].realname.getAttribute("onclick");
+	//document.forms[0].realname.addEventListener('click', hello_3, false);	
+	
+	//console.log("type of getAttribute(onclick) =" + typeof oc_attr);
+	//console.log("event handler as attribute of  " + oc_attr);		
+	/*
+	if (oc_attr !== null ){
+		console.log('onclick is defined attribute: ' + oc_attr);
+	}else{
+		console.log('onclick is NOT an attribute' + oc_attr);
+	}*/
+
+	console.log("========");
+	/*
+	document.forms[0].realname.onclick=rewrite(hello_2);//function(){console.log('set onclick property');};
+	var oc_property = document.forms[0].realname['onclick'];
+	//var oc_property = document.forms[0].realname.onclick;
+	//document.forms[0].realname['onclick']=rewrite(oc_property);
+	console.log("type of onclick =" + typeof oc_property);
+	console.log("event handler as property of  " + document.forms[0].realname['onclick']);
+	
+	if ( oc_property !== null ){
+		console.log('onclick is a defined property: ' + oc_property );
+	}else{
+		console.log('onclick is NOT aproperty: ' + oc_property);
+	}*/
+	console.log("========");
+	
+	//console.log("HELLO_2: onclick's element: " + oc_attr.this);
+	/*
+	console.log('\n');
+	for (var prop in document.forms[0].realname) {
+		console.log(prop);		
+	}*/
+
+</script> 
+Email:<INPUT NAME="email">
+destination: <INPUT type= "password" NAME="desination" onclick="var apple = new Apple('big'); alert(apple.getInfo);"><br>
+
+<input type="radio" checked="" value="38" name="id[11]"/>
+1. Soft Carry Case<br/>
+
+<input type="radio" value="39" name="id[11]"/>
+2. Hard Shell Carry Case (+US$2.00)<br/><br/>
+
+<input type="radio" name="group1" value="Milk"> Milk <br>
+<input type="radio" name="group1" value="Butter"> Butter <br>
+<input type="radio" name="group1" value="Cheese"> Cheese <br>
+<input type="checkbox" value="1" id="checkout-ship-same" name="checkout-ship-same"/>
+
+<input type="hidden" value="77" name="products_id"/>
+<input type="image" border="0" title=" Add to Cart " alt="Add to Cart" src="button_in_cart.gif"/>
+
+<TEXTAREA NAME="textarea" ROWS="5" COLS="20"></TEXTAREA> <br>
+
+<input type="file" name="aFile"><br>
+
+<IMG SRC="logo.png" WIDTH="250" HEIGHT="61" BORDER="0" ALT="">
+
+<TEXTAREA NAME="" ROWS="15" COLS="150" id=t-area></TEXTAREA> <br>
+
+
+
+<INPUT TYPE="reset"><input type="button" VALUE="do nothing" >
+</FORM>
+
+
+</BODY>
+</html>
