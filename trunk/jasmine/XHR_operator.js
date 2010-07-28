@@ -28,7 +28,7 @@ var XO = {
 		XHR_Object.onreadystatechange = 
 			function() {
 				if ( XHR_Object.readyState != 4 ) return;
-				console.log(XHR_Object.responseText);
+				//console.log(XHR_Object.responseText);				
 				func();
 			};	
 		try {

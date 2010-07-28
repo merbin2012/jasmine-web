@@ -1,17 +1,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<script type="text/javascript" src="script_operator.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">	
 	<script type="text/javascript" src="instrument/probe_operator.js"></script>
-	
+	<script type="text/javascript" src="script_operator.js"></script>
+	<script type="text/javascript" src="XHR_operator.js"></script>
 	<script type="text/javascript">
+	var global = "a";
+	function hello_n(){
+	//	console.log("hello_3's this: " + this.name);
+		console.log("say hello, eh..n...then do sth.");
+	}
 	
+	window.addEventListener('load', function(){console.log('a fake func')}, true);
+	/*
+	window.addEventListener('load', 
+								function(){
+									var scripts = document.getElementsByTagName("script");
+									//console.log(scripts.length + " scripts found");
+									for (var i=0; i<scripts.length; i++){
+										console.log("===========" + i + "===========");
+										var script_src = scripts[i].innerHTML;									
+										if (script_src.length){
+											JO.do_fx_instrument(script_src);										
+										}
+									}
+								}, 
+							true);
+	*/
+	
+	</script>
+	<script type="text/javascript">
+	/*
+	window.addEventListener('load', write_html, true);
+	function write_html(){
+	
+		//alert('new_html.');
+		var src_html = SO.view_source();
+		console.log('---write_html---');
+		var clean_src_html= src_html.substring(0,5500);;//.replace("window.onload=write_html;", "");
+		//console.log(clean_src_html);
+		
+		
+		document.write("<html>" + clean_src_html + "</html>");
+		document.close();
+
+	}
+
+	//alert('written');
+	*/
 	</script>
 	<title>Test Trace User Interaction</title>
 </head>
 <body name="body" >
-<A HREF="TestRecInteraction_2.html"  name="link2"><B><I>ddd<IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></I></B></A><BR>
+
 
 <A HREF="TestRecInteraction_2.html"  name="link2"><IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></A>
 
@@ -31,20 +73,20 @@ third<br>
 	<OPTION VALUE="sel-d" >d</OPTION>
 </SELECT>
 name: 
-<INPUT NAME="realname" onclick='XO.script_dom_inject(parent.document, "some script"); SO.count_script(parent.document);' >
+<INPUT NAME="realname" >
 
 
-<script type="text/javascript"> 	
-	/*
+<script type="text/javascript">	
 	document.forms[0].realname.addEventListener('click', function(){console.log('anonymous handler')}, false);	
-	document.forms[0].realname.removeEventListener('click', function(){console.log('anonymous handler')}, false);	
+	//document.forms[0].realname.removeEventListener('click', function(){console.log('anonymous handler')}, false);	
 	var _func = function(){console.log('anonymous function')};
-	_func = rewrite(_func);
+	//_func = rewrite(_func);
 	document.forms[0].realname.addEventListener('click', _func, false);
+	//document.forms[0].realname.removeEventListener('click', _func, false);
 	
-	hello_4 = rewrite(hello_4);
-	document.forms[0].realname.addEventListener('click', hello_4, false);
-	*/
+	//hello_4 = rewrite(hello_4);
+	//document.forms[0].realname.addEventListener('click', hello_4, false);
+	/**/
 </script> 
 Email:<INPUT NAME="_email">
 <script type="text/javascript"> 
@@ -79,61 +121,8 @@ destination: <INPUT type= "password" NAME="desination" onclick="var apple = new 
 
 <INPUT TYPE="reset"><input type="button" VALUE="do nothing" >
 </FORM>
-
-
-</BODY>
-</html>
-
-<script type="text/javascript">
-function hello_n(){
-//	console.log("hello_3's this: " + this.name);
-	console.log("say hello, eh..n...then do sth.");
-}
-
-function find_all_functions(){
-	for (var p in window){
-		if (typeof window[p] && typeof window[p]=='function'){
-			console.log('type: ' + typeof window[p] + '\tprop:' + p + '\n');
-			console.log(window[p].toSource());
-		}
-	}
-}
-/*
-window.addEventListener('load', 
-							function(){
-								var scripts = document.getElementsByTagName("script");
-								//console.log(scripts.length + " scripts found");
-								for (var i=0; i<scripts.length; i++){
-									console.log("===========" + i + "===========");
-									var script_src = scripts[i].innerHTML;									
-									if (script_src.length){
-										JO.do_fx_instrument(script_src);										
-									}
-								}
-							}, 
-						true);
-*/
-/*
-var f = 'global';
-function constructFunc(){
-	var f = 'local';
-	return new Function("return f");
-}
-
-console.log(constructFunc()());
-*/
-
-function hello_3(say_sth){
-//	console.log("hello_3's this: " + this.name);
-	console.log(say_sth);
-}
-
-/*
-window.addEventListener('load', 
-						function(){hello_3('window_load handler.')}, 
-						true);
-*/
-</script>
+<A HREF="TestRecInteraction_2.html"  name="link2"><B><I>ddd<IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></I></B></A><BR>
 
 </BODY>
+
 </html>

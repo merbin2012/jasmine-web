@@ -1,5 +1,73 @@
-const PROBES_URI = "instrument/probes_reg.json";
+;(function (window_object){
+	//read in registered instrumentation code and points from the json configuration file
+	//PO.instrument_interactively(window_object);
+	/*
+	//for each object in the config file
+	var uri = probe_obj.uri;
+	if win_obj.dom.scripts NOT contains uri
+		return; //do nothing because func is not used in the window_object
+	//for each instrument code in the uri
+		//insert_probe THAT appends to the window.document.
+	*/
+	//console.log(window_object.location.href + ' instrumented!'); 
+	/*for (var p in window){
+		if ( typeof window[p] === 'string' ){
+			window[p] = null;
+		}
+	}
 
+	for (var p in window){
+		if ( typeof window[p] === 'string' ){
+			console.log(p + '\t' + window[p] + '\t' + typeof window[p])
+		}
+	}*/
+
+	//window.addEventListener('load', asyn_write_html, true);
+
+	//function asyn_write_html(){
+	function getXHRObject () {
+		var xhrObj = false;
+		try {
+			xhrObj = new XMLHttpRequest();
+		}catch(e){
+			var progid = ['MSXML2.XMLHTTP.5.0', 'MSXML2.XMLHTTP.4.0', 'MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP', 'Microsoft.XMLHTTP'];
+			for ( var i=0; i < progid.length; ++i ) {
+				try {
+					xhrObj = new ActiveXObject(progid[i]);
+				} catch(e) {
+					continue;
+				}
+			break;
+			}
+		} finally {
+			return xhrObj;
+		}
+	};
+		XHR_Object = getXHRObject();
+
+		XHR_Object.onreadystatechange = 
+			function() {
+				if ( XHR_Object.readyState != 4 ) return;
+				//console.log(XHR_Object.responseText);
+				var src_html = XHR_Object.responseText;//.replace("window.addEventListener('load', asyn_write_html, true);", "");
+
+				document.write(src_html);
+				//document.close();
+			};	
+		try {
+			console.log('xhr_inject send...');			
+			XHR_Object.open('GET', window_object.location.href, true);
+			XHR_Object.send('');
+		}
+		catch(e) {
+			console.log(e);
+		}		
+	//}
+
+	//alert('written');
+})(this);
+
+const PROBES_URI = "instrument/probes_reg.json";
 
 /** probe operator */
 var PO = {	
@@ -20,6 +88,7 @@ var PO = {
 			//	insert_prob
 		};
 
+		
 		try {
 			console.log('xhr_eval send...');
 			xhr_obj.open('GET', PROBES_URI, true);
@@ -261,16 +330,154 @@ var XO = {
 	}
 };
 
-;(function (window_object){
-	//read in registered instrumentation code and points from the json configuration file
-	PO.instrument_interactively(window_object);
+var SO = {
+	count_script : function(doc_node){
+		var scripts = doc_node.getElementsByTagName("script");
+		var cntr = scripts.length;
+		
+		console.log(cntr + ' scripts counted ' );
+
+		return cntr;
+	},
+
+	iterate_script : function(doc_node){
+		var scripts = doc_node.getElementsByTagName("script");
+		var cntr = scripts.length;
+		
+		while ( cntr ) {
+			var curScript = scripts[cntr-1];
+			console.log(curScript.src.toString());
+			console.log('script source: ' + curScript.innerHTML);
+			cntr--;
+		}
+	},
+	
+	read_script_src : function(script_src){		
+		var scr_js = document.getElementsByTagName('script');		
+		var s_ln = scr_js.length;
+		for (var i=0; i<s_ln; i++){
+			if (-1 != scr_js[i].src.indexOf(script_src)){
+				console.log(scr_js[i].src);					
+				XO.xhr_hanlder(scr_js[i].src, function(){});
+			}
+		}		
+	},
+	
+	//cannot read external scripts 
+	view_scripts: function(){
+		var scripts = document.getElementsByTagName("script");
+		console.log(scripts.length + " scripts found");
+		for (var i=0; i<scripts.length; i++){
+			console.log(scripts[i].innerHTML);
+			console.log("-----");
+		}
+	},
+
+	find_global_functions: function (){
+		for (var p in window){
+			if (typeof window[p] && typeof window[p]=='function'){
+				//console.log('type: ' + typeof window[p] + '\tname:' + p + '\n');
+				if ( window[p].toSource().indexOf('{[native code]}') == -1 ){
+					console.log('type: ' + typeof window[p] + '\tname:' + p + '\n');
+					console.log(window[p].toSource());
+				}
+			}
+		}
+	},
+
+	view_source: function(){
+		var source_code = document.documentElement.innerHTML;		
+		return source_code;
+	},
+
+	/** Insert before/after a fuction. The functio's behavior doesn't change */
+	rewrite_func: function(old){	
+		//console.log("SO.rewriting \n" + old + "|...\n");
+		return function(){
+			if (old.name == 0) {
+				console.log('anonymous function');
+				old[name] = 'anonymous';
+			}
+			console.log( 'rewritten function: |' + old.name + '|');// + ', called by ' + this.name);
+			
+			console.log("old's this: " + this.name);
+			old.apply(this, arguments);//Array.prototype.splice.call(arguments, 0));
+			console.log("rewritten function executed " + this.name);
+		}
+	},
+	
+	/** Change function behavior. 
+	doc_node: a document object
+	new_beh: A string of the new behavior to be assigned to the function. for example 'function(){console.log("inner hello")};'
+	*/	
+	alter_func: function(old, new_beh, doc_node){
+		var src = doc_node.createElement('script');
+		src.text = 'var t = ' + new_beh; //
+		doc_node.getElementsByTagName('head')[0].appendChild(src);
+		return t.apply(this, old.arguments);		
+	},
 	/*
-	//for each object in the config file
-	var uri = probe_obj.uri;
-	if win_obj.dom.scripts NOT contains uri
-		return; //do nothing because func is not used in the window_object
-	//for each instrument code in the uri
-		//insert_probe THAT appends to the window.document.
+	usage of alter_func:
+	(function(){
+		hello = SO.alter_func(hello);
+		hello	= SO.alter_func(hello, new_body, document);
+	})();
 	*/
-	console.log(window_object.location.href + ' instrumented!'); 
-})(this);
+	click_to_write: function(e){
+		console.log('click handler invoked');
+		function getTarEle(e){
+			var targetElement = e.target; 
+
+			if( targetElement && ( targetElement.nodeType == 3 ) ) {
+				targetElement = targetElement.parentNode; 
+			}
+			return targetElement;
+		}
+
+		var target_ele	= getTarEle(e);
+		if (target_ele && target_ele['onclick']){
+			console.log(target_ele.name + ' click handler: \t' + target_ele['onclick'].toString());
+			target_ele['onclick'] =JO.rewrite(target_ele['onclick']);
+		}
+	}
+
+	/*
+	//TODO: eval is rewritable. for example
+	function rewrite_eval(b){
+		var a = eval;
+		return function(){
+			console.log(arguments);
+			a(b);
+			//console.log("rewritten eval executed " + this.name);
+		}
+	}
+	eval = rewrite_eval('console.log("eval in console");'); 
+	eval('console.log("eval speaks.")'); //output: eval in console
+	eval('h_sth("im sth")'); //output: eval in console
+	*/
+	
+	/* script onload/onreadystatechange
+	//console.log(document.expando + ' document.expando ');
+		function load_handler(){
+			console.log('domscript load handler executed');	
+			alert('domscript load handler executed');
+		}		
+	
+		var domscript = document.createElement('script');
+		//non-IE broswers
+		domscript.onload = load_handler;
+		//IE 
+		//domscript.onreadystatechange  = load_handler;
+		//alert('domscript.onloadDone ' + domscript.onloadDone);
+		//alert('domscript.onload ' + domscript.onload);
+		domscript.src		= 'dom_operator.js';
+		domscript.type	= 'text/javascript';
+	
+		
+		console.log('before append domscript');
+		document.getElementsByTagName('head')[0].appendChild(domscript);
+		console.log('after append domscript');
+		//domscript.__onload();	
+	*/
+};
+
