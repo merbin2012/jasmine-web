@@ -41,9 +41,21 @@ var SO = {
 		}
 	},
 
+	find_global_functions: function (){
+		for (var p in window){
+			if (typeof window[p] && typeof window[p]=='function'){
+				//console.log('type: ' + typeof window[p] + '\tname:' + p + '\n');
+				if ( window[p].toSource().indexOf('{[native code]}') == -1 ){
+					console.log('type: ' + typeof window[p] + '\tname:' + p + '\n');
+					console.log(window[p].toSource());
+				}
+			}
+		}
+	},
+
 	view_source: function(){
-		var source_code = document.documentElement.innerHTML;
-		console.log(source_code);
+		var source_code = document.documentElement.innerHTML;		
+		return source_code;
 	},
 
 	/** Insert before/after a fuction. The functio's behavior doesn't change */
