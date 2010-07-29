@@ -2,61 +2,50 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<script type="text/javascript" src="instrument/init.js"></script>	
 	<script type="text/javascript" src="instrument/probe_operator.js"></script>
-	<script type="text/javascript" src="script_operator.js"></script>
-	<script type="text/javascript" src="XHR_operator.js"></script>
 	<script type="text/javascript">
+		console.log('loaded');	
+		/*
+		function rewrite_html(){		
+			console.log("rewrite_html");
+			XHR_Object = XO.getXHRObject();
+	
+			XHR_Object.onreadystatechange = 
+				function() {
+					if ( XHR_Object.readyState != 4 ) return;
+					//console.log(XHR_Object.responseText);				
+					var src_html = XHR_Object.responseText.replace("rewrite_html()", "");
+					//document.write(src_html);		
+					//document.close();
+				};	
+			try {						
+				XHR_Object.open('GET', window.location.href, true);
+				XHR_Object.send('');
+				console.log('XHR send send...');			
+			}
+			catch(e) {
+				console.log(e);
+			}		
+		}*/
+	
+	XO.rewrite_html();
+	
 	var global = "a";
 	function hello_n(){
-	//	console.log("hello_3's this: " + this.name);
 		console.log("say hello, eh..n...then do sth.");
-	}
-	
-	window.addEventListener('load', function(){console.log('a fake func')}, true);
-	/*
-	window.addEventListener('load', 
-								function(){
-									var scripts = document.getElementsByTagName("script");
-									//console.log(scripts.length + " scripts found");
-									for (var i=0; i<scripts.length; i++){
-										console.log("===========" + i + "===========");
-										var script_src = scripts[i].innerHTML;									
-										if (script_src.length){
-											JO.do_fx_instrument(script_src);										
-										}
-									}
-								}, 
-							true);
-	*/
-	
-	</script>
-	<script type="text/javascript">
-	/*
-	window.addEventListener('load', write_html, true);
-	function write_html(){
-	
-		//alert('new_html.');
-		var src_html = SO.view_source();
-		console.log('---write_html---');
-		var clean_src_html= src_html.substring(0,5500);;//.replace("window.onload=write_html;", "");
-		//console.log(clean_src_html);
-		
-		
-		document.write("<html>" + clean_src_html + "</html>");
-		document.close();
+	}	
 
-	}
-
-	//alert('written');
-	*/
+	window.addEventListener('load', function(){console.log('a fake func')}, true);	
+	//window.addEventListener('load', XO.rewrite_html, true);		
 	</script>
 	<title>Test Trace User Interaction</title>
 </head>
 <body name="body" >
 
 
-<A HREF="TestRecInteraction_2.html"  name="link2"><IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></A>
+<A HREF="TestRecInteraction.html"  name="link2"><IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></A><BR>
+
+<A href="TestRecInteraction.html" ><B><I>link to TestRecInteraction.html<IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></I></B></A><BR>
 
 <FORM ACTION="" METHOD=POST name="theForm">
 <div name="div_1">
@@ -91,10 +80,10 @@ name:
 </script> 
 Email:<INPUT NAME="_email">
 <script type="text/javascript"> 
-	//document.forms[0]._email.addEventListener('click', hello_4, false);
+	document.forms[0]._email.addEventListener('click', hello_n, false);
 </script> 
 
-destination: <INPUT type= "password" NAME="desination" onclick="var apple = new Apple('big'); alert(apple.getInfo);"><br>
+destination: <INPUT type= "password" NAME="desination"><br>
 
 <input type="radio" checked="" value="38" name="id[11]"/>
 1. Soft Carry Case<br/>
@@ -110,20 +99,27 @@ destination: <INPUT type= "password" NAME="desination" onclick="var apple = new 
 <input type="hidden" value="77" name="products_id"/>
 <input type="image" border="0" title=" Add to Cart " alt="Add to Cart" src="button_in_cart.gif"/>
 
-<TEXTAREA NAME="textarea" ROWS="5" COLS="20"></TEXTAREA> <br>
+<TEXTAREA NAME="textarea" ROWS="3" COLS="5"></TEXTAREA> <br>
 
 <input type="file" name="aFile"><br>
 
 <IMG SRC="logo.png" WIDTH="250" HEIGHT="61" BORDER="0" ALT="">
 
-<TEXTAREA NAME="" ROWS="15" COLS="150" id=t-area></TEXTAREA> <br>
+<TEXTAREA NAME="" ROWS="5" COLS="15" id=t-area></TEXTAREA> <br>
 
 
 
 <INPUT TYPE="reset"><input type="button" VALUE="do nothing" >
 </FORM>
-<A HREF="TestRecInteraction_2.html"  name="link2"><B><I>ddd<IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></I></B></A><BR>
-
+<A HREF="TestRecInteraction.html"  name="link2">
 </BODY>
+<script type="javascript/text">
+	function hello_4(){
+		console.log("hello 4!");
+	}
+	document.forms[0].realname.addEventListener('click', hello_4, false);
+	document.forms[0].realname.addEventListener('click', hello_n, false);
+</script>
+
 
 </html>

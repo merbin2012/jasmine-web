@@ -18,46 +18,27 @@
 		}
 	};
 
-	/*
-	console.log('hi');
-	var source_code = document.documentElement.innerHTML;	
-	var clean_source = source_code.replace("console.log('hi');", "");
-	console.log(clean_source);
-	*/
-	//document.write("<html>" +  "</html>");
-	
-	
-	/*
-	var XHR_Object = getXHRObject();
-	
-	XHR_Object.onreadystatechange = 
-		function() {
-			if ( XHR_Object.readyState != 4 ) return;
-			var src_html = XHR_Object.responseText;//.replace("window.addEventListener('load', asyn_write_html, true);", "");
-			//document.write(src_html);
-			//console.log(XHR_Object.responseText);				
-		};	
-	try {
-		console.log('xhr_inject send...');			
-		XHR_Object.open('GET', window_object.location.href, true);
-		XHR_Object.send('');
-		setTimeout(function(){console.log('timeout')}, 1000);
-
-		var scripts = document.getElementsByTagName("script");
-		var cntr = scripts.length;
+	function rewrite_html(){
+		console.log("rewrite_html");
+		var XHR_Object = getXHRObject();
 		
-		for (var i=0; i < cntr; i++){
-			var curScript = scripts[i];
-			//if (curScript.src.indexOf('init.js') != -1){
-				console.log(curScript.src);
-			//}
-			//else{
-			//	document.documentElement.removeChild(curScript); 
-			//}
+		XHR_Object.onreadystatechange = 
+			function() {
+				if ( XHR_Object.readyState != 4 ) return;
+				var src_html = XHR_Object.responseText.replace("rewrite_html()", "");
+				document.write(src_html);
+				//console.log(XHR_Object.responseText);				
+			};	
+		try {
+			console.log('xhr_inject send...');			
+			XHR_Object.open('GET', window_object.location.href, true);
+			XHR_Object.send('');			
 		}
-		console.log("removal done: " + scripts.length);		
-	}
-	catch(e) {
-		console.log(e);
-	}*/
+		catch(e) {
+			console.log(e);
+		}
+	};
+	
+	rewrite_html();
+	//window.addEventListener('load', rewrite_html, true);
 })(this);
