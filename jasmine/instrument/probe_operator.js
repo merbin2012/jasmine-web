@@ -1,5 +1,3 @@
-
-
 const PROBES_URI = "instrument/probes_reg.json";
 
 /** probe operator */
@@ -65,6 +63,7 @@ var PO = {
 					}
 				}
 			}
+			return -1;
 		}
 
 		function parse_handler_tokens(handler_src){
@@ -113,7 +112,7 @@ var PO = {
 		var match;
 		var i = 0;
 		//TODO add to a table.
-		while(match = ff_event_pattern.exec(script_src)){
+		while(match == ff_event_pattern.exec(script_src)){
 			//console.log( '------' + i++ + '----\nmatch: ' + match.index + "\nstring: " + match[0] + '\n');
 			var ele_handler_event = match[0];
 			//find the element and addEventListener method
@@ -163,9 +162,9 @@ var DO = {
 	inject_script : function(doc_nd, scr, t){	
 		var se = doc_nd.createElement('script');
 		se.type = 'text/javascript';
-		if ( t = 'uri'){
+		if ( t === 'uri'){
 			se.src = scr;
-		}else if ( t = 'code' ){
+		}else if ( t === 'code' ){
 			se.text = scr;
 		}
 		doc_nd.getElementsByTagName('head')[0].appendChild(se);
@@ -223,6 +222,29 @@ var XO = {
 		}
 	},
 
+	rewrite_html: function(){
+		console.log("rewrite_html");
+		XHR_Object = XO.getXHRObject();
+
+		XHR_Object.onreadystatechange = 
+			function() {
+				if ( XHR_Object.readyState != 4 ) return;
+				//console.log(XHR_Object.responseText);				
+				var src_html = XHR_Object.responseText.replace("XO.rewrite_html();", "").replace("name", "NM");
+				
+				document.write(src_html);		
+				
+				//document.close();
+			};	
+		try {						
+			XHR_Object.open('GET', window.location.href, true);
+			XHR_Object.send('');
+			console.log('XHR send send...');			
+		}
+		catch(e) {
+			console.log(e);
+		}		
+	},
 	
 
 	//inject_1: execute retrieved data right away
@@ -338,6 +360,7 @@ var SO = {
 			console.log("rewritten function executed " + this.name);
 		}
 	},
+	
 	
 	/** Change function behavior. 
 	doc_node: a document object
