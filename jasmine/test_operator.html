@@ -2,42 +2,36 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<script type="text/javascript" src="instrument/probe_operator.js"></script>
+	<script type="text/javascript" src="script_operator.js"></script>
 	<script type="text/javascript">
-		console.log('loaded');	
+		//document.write = SO.rewrite_func(document.write);
+		//var in_code = '<scr' + 'ipt type="text/javascript" src="_js_operator.js"></scr' + 'ipt>';
+		//document.write(in_code);
 		/*
-		function rewrite_html(){		
-			console.log("rewrite_html");
-			XHR_Object = XO.getXHRObject();
+		*/
+		document.write('<scr');		
+		document.write('ipt type="text/javascript" src="_js_operator.js"></scr');		
+		console.log('otherthing');
+		document.write('ipt>');
+		var global = "a";
 	
-			XHR_Object.onreadystatechange = 
-				function() {
-					if ( XHR_Object.readyState != 4 ) return;
-					//console.log(XHR_Object.responseText);				
-					var src_html = XHR_Object.responseText.replace("rewrite_html()", "");
-					//document.write(src_html);		
-					//document.close();
-				};	
-			try {						
-				XHR_Object.open('GET', window.location.href, true);
-				XHR_Object.send('');
-				console.log('XHR send send...');			
-			}
-			catch(e) {
-				console.log(e);
-			}		
-		}*/
+		function hello_n(){
+			console.log("say hello, eh..n...then do sth.");
+		}	
 	
-	XO.rewrite_html();
-	
-	var global = "a";
-	function hello_n(){
-		console.log("say hello, eh..n...then do sth.");
-	}	
+		function write_code(){
+			//document.write(in_code);
+			var scr_obj = document.createElement('script');	
+			document.getElementsByTagName('head')[0].appendChild(scr_obj);
+			console.log('to add console hello');	
+			scr_obj.text = "console.log('hello dom'); 		document.write('<scr');		document.write('ipt type=\"text/javascript\" src=\"_js_operator.js\"></scr');		document.write('otherthing'); document.write('ipt>');";
+			console.log(scr_obj.text);			
+		}
+		//write_code();
+		//window.addEventListener('load', XO.rewrite_html, true);		
 
-	window.addEventListener('load', function(){console.log('a fake func')}, true);	
-	//window.addEventListener('load', XO.rewrite_html, true);		
 	</script>
+	
 	<title>Test Trace User Interaction</title>
 </head>
 <body name="body" >
@@ -66,17 +60,24 @@ name:
 <INPUT NAME="realname" >
 
 
-<script type="text/javascript">	
-	document.forms[0].realname.addEventListener('click', function(){console.log('anonymous handler')}, false);	
+<script type="text/javascript">		
+	//document.write('<scr' + 'ipt type="text/javascript" src="script_operator.js"></scr' + 'ipt>');
+	//document.forms[0].realname.addEventListener('click', function(){console.log('anonymous handler')}, false);	
 	//document.forms[0].realname.removeEventListener('click', function(){console.log('anonymous handler')}, false);	
 	var _func = function(){console.log('anonymous function')};
 	//_func = rewrite(_func);
-	document.forms[0].realname.addEventListener('click', _func, false);
+	//document.forms[0].realname.addEventListener('click', _func, false);
 	//document.forms[0].realname.removeEventListener('click', _func, false);
 	
 	//hello_4 = rewrite(hello_4);
 	//document.forms[0].realname.addEventListener('click', hello_4, false);
 	/**/
+	function hello_4(){
+		console.log("hello 4!");
+		
+	}
+	document.forms[0].realname.addEventListener('click', write_code, false);
+	
 </script> 
 Email:<INPUT NAME="_email">
 <script type="text/javascript"> 
@@ -87,6 +88,8 @@ destination: <INPUT type= "password" NAME="desination"><br>
 
 <input type="radio" checked="" value="38" name="id[11]"/>
 1. Soft Carry Case<br/>
+
+
 
 <input type="radio" value="39" name="id[11]"/>
 2. Hard Shell Carry Case (+US$2.00)<br/><br/>
@@ -111,15 +114,14 @@ destination: <INPUT type= "password" NAME="desination"><br>
 
 <INPUT TYPE="reset"><input type="button" VALUE="do nothing" >
 </FORM>
-<A HREF="TestRecInteraction.html"  name="link2">
-</BODY>
-<script type="javascript/text">
-	function hello_4(){
-		console.log("hello 4!");
-	}
-	document.forms[0].realname.addEventListener('click', hello_4, false);
-	document.forms[0].realname.addEventListener('click', hello_n, false);
+<script type="text/javascript">
+	SO.count_script(document);
+	JO.run();
+	document.forms[0].realname.addEventListener('click', hello_n, false);	
 </script>
+
+</BODY>
+
 
 
 </html>
