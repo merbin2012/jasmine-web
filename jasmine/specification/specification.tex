@@ -31,6 +31,13 @@ wli7@gatech.edu
 \jasmine (\underline{JA}vaScript \underline{M}anipulation and \underline{In}strumentation at \underline{E}xecution-time) is tool for run-time JavaScript instrumentation and code manipulation. This document is the specification of \jasmine, including requirements, system design, and API design.
 
 The goal is to instrument code at run-time for two benefits: to handle dynamism of JavaScript and to avoid a proxy.\footnote{An instrumentation proxy complicates the deployment, increases the costs of maintenance, and may introduce performance overhead under heavy workload.}
+
+The dynamism of javascript lies in dynamic operation and dynamic code injection.
+for dynamic operation: instrument when it's executed
+for dynamic code injection: eval(), innerHTML, document.write();
+
+document.write() cannot directly injected invoked in event handlers, but can sneak in through innerHTML. Because document.write() in innerHTML is a duplicated process, which is complicated and low-efficient, it's not common in practice. If it happens, it might be against sound development disciplines or be malicious code. We provide two ways to handle document.write(): 1. parse in innerHTML and 2. monitoring thread.
+
 %%-------------------------------------------------------------------------
 
 \section{Requirements}
@@ -148,7 +155,7 @@ inst\_code: instrument code
 
 Need to register eventListeners.\\
 
-Using eval() to execute rewritten code. 
+Using eval() to execute rewritten code.
 
 Separated implementation from instrumenting eval (See Section~\ref{sec_relatedIssues}, Issue~\ref{eval}).
 
