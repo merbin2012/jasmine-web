@@ -38,6 +38,14 @@ for dynamic code injection: eval(), innerHTML, document.write();
 
 document.write() cannot directly injected invoked in event handlers, but can sneak in through innerHTML. Because document.write() in innerHTML is a duplicated process, which is complicated and low-efficient, it's not common in practice. If it happens, it might be against sound development disciplines or be malicious code. We provide two ways to handle document.write(): 1. parse in innerHTML and 2. monitoring thread.
 
+
+appendChild(scrElem); \\
+scrElem.text = "js code";\\
+
+only works 1) new script object and 2) scrElem.text after appendChild(scrElem);
+
+
+
 %%-------------------------------------------------------------------------
 
 \section{Requirements}
