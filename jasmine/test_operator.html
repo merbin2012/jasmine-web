@@ -4,11 +4,23 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<script type="text/javascript" src="script_operator.js"></script>
 	<script type="text/javascript">
+		console.log('log started.');
+		var scripts = document.getElementsByTagName('script');
+		scripts[0].text = "console.log('text append');"
+		console.log(scripts[0].src);
+
+		var new_scr = document.createElement('script');
+		
+		new_scr.src = "XHR_operator.js";	
+		document.getElementsByTagName('head')[0].appendChild(new_scr);
+		
+
+		
 		//document.write = SO.rewrite_func(document.write);
 		//var in_code = '<scr' + 'ipt type="text/javascript" src="_js_operator.js"></scr' + 'ipt>';
 		//document.write(in_code);
 		/*
-		*/
+		
 		document.write('<scr');		
 		document.write('ipt type="text/javascript" src="_js_operator.js"></scr');		
 		console.log('otherthing');
@@ -28,7 +40,8 @@
 			console.log(scr_obj.text);			
 		}
 		//write_code();
-		//window.addEventListener('load', XO.rewrite_html, true);		
+		//window.addEventListener('load', XO.rewrite_html, true);	
+		*/
 
 	</script>
 	
@@ -76,12 +89,12 @@ name:
 		console.log("hello 4!");
 		
 	}
-	document.forms[0].realname.addEventListener('click', write_code, false);
+	//document.forms[0].realname.addEventListener('click', write_code, false);
 	
 </script> 
 Email:<INPUT NAME="_email">
 <script type="text/javascript"> 
-	document.forms[0]._email.addEventListener('click', hello_n, false);
+	//document.forms[0]._email.addEventListener('click', hello_n, false);
 </script> 
 
 destination: <INPUT type= "password" NAME="desination"><br>
@@ -116,8 +129,10 @@ destination: <INPUT type= "password" NAME="desination"><br>
 </FORM>
 <script type="text/javascript">
 	SO.count_script(document);
-	JO.run();
-	document.forms[0].realname.addEventListener('click', hello_n, false);	
+	//JO.run();
+	//document.forms[0].realname.addEventListener('click', hello_n, false);	
+	
+		new_scr.text = "console.log('new_script');"
 </script>
 
 </BODY>
