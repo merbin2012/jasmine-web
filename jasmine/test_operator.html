@@ -4,19 +4,33 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<script type="text/javascript" src="script_operator.js"></script>
 	<script type="text/javascript">
-		console.log('log started.');
-		var scripts = document.getElementsByTagName('script');
-		scripts[0].text = "console.log('text append');"
-		console.log(scripts[0].src);
-
-		var new_scr = document.createElement('script');
 		
-		new_scr.src = "XHR_operator.js";	
+	</script>
+	<script type="text/javascript" id=a>	
+		function txt(){
+			console.log('....script.text run....');
+		}
+		
+		var _new_scr = document.createElement('script');
+		
+		//new_scr.onreadystatechange=function(){console.log('script is ready.');};
+		//new_scr.onload=function(){console.log('script is onload.');};
+		_new_scr.src = "script_tester.js";	
+		//console.log('new_scr.src: ' + new_scr.src);
+		//new_scr.text = "txt()";//"console.log('...script text loaded...');"			
+		
+		console.log('Before appendChild.');
 		document.getElementsByTagName('head')[0].appendChild(new_scr);
+		console.log('After appendChild.');
+
+		//new_scr.src = "script_tester.js";	
+		//new_scr.text = "console.log('....script.text run....');"	
+		console.log('last statement of same tag----');		
 		
 
-		
+
 		//document.write = SO.rewrite_func(document.write);
+		//document.write('heloo world');
 		//var in_code = '<scr' + 'ipt type="text/javascript" src="_js_operator.js"></scr' + 'ipt>';
 		//document.write(in_code);
 		/*
@@ -42,9 +56,13 @@
 		//write_code();
 		//window.addEventListener('load', XO.rewrite_html, true);	
 		*/
-
 	</script>
-	
+	<script type="text/javascript">	
+	var this_scr = document.getElementById('a');
+		//console.log(this_scr);
+		//this_scr.onload=function(){console.log('this script is onload.');};
+		//console.log('---another script tag---');
+	</script>
 	<title>Test Trace User Interaction</title>
 </head>
 <body name="body" >
@@ -74,6 +92,7 @@ name:
 
 
 <script type="text/javascript">		
+	console.log('middle away from appendChild.');
 	//document.write('<scr' + 'ipt type="text/javascript" src="script_operator.js"></scr' + 'ipt>');
 	//document.forms[0].realname.addEventListener('click', function(){console.log('anonymous handler')}, false);	
 	//document.forms[0].realname.removeEventListener('click', function(){console.log('anonymous handler')}, false);	
@@ -128,11 +147,10 @@ destination: <INPUT type= "password" NAME="desination"><br>
 <INPUT TYPE="reset"><input type="button" VALUE="do nothing" >
 </FORM>
 <script type="text/javascript">
-	SO.count_script(document);
+	console.log('far from append child');
+	//SO.count_script(document);
 	//JO.run();
 	//document.forms[0].realname.addEventListener('click', hello_n, false);	
-	
-		new_scr.text = "console.log('new_script');"
 </script>
 
 </BODY>
