@@ -2,9 +2,9 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<script type="text/javascript" src="instrument/init.js"></script>
+<!-- 	<script type="text/javascript" src="instrument/init.js"></script>
 	<script type="text/javascript" src="instrument/probe_operator.js"></script>
-	<script type="text/javascript" src="script_operator.js"></script>
+	<script type="text/javascript" src="script_operator.js"></script> -->
 	<script type="text/javascript">
 		
 	</script>
@@ -14,25 +14,26 @@
 		for (var i = 0; i<5; i++){
 			console.log(Math.random());
 		}
-		/*
+		/**/
 		function txt(){
-			console.log('....script.text run....');
+			console.log('....script.text function run....');
 		}
 		
-		var _new_scr = document.createElement('script');
+		var new_scr = document.createElement('script');
 		
 		//new_scr.onreadystatechange=function(){console.log('script is ready.');};
 		//new_scr.onload=function(){console.log('script is onload.');};
-		_new_scr.src = "script_tester.js";	
+		//_new_scr.src = "script_tester_2.js";	
+		//_new_scr.src = "script_tester.js";	
 		//console.log('new_scr.src: ' + new_scr.src);
-		//new_scr.text = "txt()";//"console.log('...script text loaded...');"			
-		
+		new_scr.text = "txt();";//"console.log('...script text loaded...');"
 		console.log('Before appendChild.');
 		document.getElementsByTagName('head')[0].appendChild(new_scr);
 		console.log('After appendChild.');
-
+			
+		new_scr.text += "console.log('....script.text run....');"	
 		//new_scr.src = "script_tester.js";	
-		//new_scr.text = "console.log('....script.text run....');"	
+		new_scr.text = "console.log('....script.text run....');"	
 		console.log('last statement of same tag----');		
 
 
@@ -40,8 +41,7 @@
 		//document.write('heloo world');
 		//var in_code = '<scr' + 'ipt type="text/javascript" src="_js_operator.js"></scr' + 'ipt>';
 		//document.write(in_code);
-		/*
-		
+		/*		
 		document.write('<scr');		
 		document.write('ipt type="text/javascript" src="_js_operator.js"></scr');		
 		console.log('otherthing');
@@ -104,7 +104,7 @@ name:
 	//document.forms[0].realname.removeEventListener('click', function(){console.log('anonymous handler')}, false);	
 	var _func = function(){console.log('anonymous function')};
 	//_func = rewrite(_func);
-	//document.forms[0].realname.addEventListener('click', _func, false);
+	document.forms[0].realname.addEventListener('click', _func, false);
 	//document.forms[0].realname.removeEventListener('click', _func, false);
 	
 	//hello_4 = rewrite(hello_4);
