@@ -2,13 +2,27 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- 	<script type="text/javascript" src="instrument/init.js"></script>
+	<!-- <script type="text/javascript" src="instrument/init.js"></script>
 	<script type="text/javascript" src="instrument/probe_operator.js"></script>
 	<script type="text/javascript" src="script_operator.js"></script> -->
 	<script type="text/javascript">
 		
-	</script>
+	</script> -->
+
+
 	<script type="text/javascript" id=a>
+		
+		(function curry (fn, scope) {
+			console.log('curry');
+			var scope = scope || window;
+			var args = [];
+			for (var i=2, len = arguments.length; i < len; ++i) {
+				args.push(arguments[i]);
+			};
+			return function() {
+				fn.apply(scope, args);
+			};
+		})(function(){console.log('hello')},this)
 		/*
 		Math.random = function(){return 1};
 		for (var i = 0; i<5; i++){
@@ -63,19 +77,23 @@
 		//write_code();
 		//window.addEventListener('load', XO.rewrite_html, true);	
 		*/
-	</script>
+	</script>	
+
+	<title>Test Trace User Interaction</title>
+</head>
+<body name="body" >
+
+<BUTTON ID="oButton" onmouseout="alert(oButtonScript.event)">Flip</BUTTON><BR>
+
+<A HREF="TestRecInteraction.html"  name="link2"><IMG id=iButton SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></A><BR>
 	<script type="text/javascript">	
 		//var this_scr = document.getElementById('a');
 		//console.log(this_scr);
 		//this_scr.onload=function(){console.log('this script is onload.');};
 		//console.log('---another script tag---');
+		
+		//console.log(iButton.onmouseover);
 	</script>
-	<title>Test Trace User Interaction</title>
-</head>
-<body name="body" >
-
-
-<A HREF="TestRecInteraction.html"  name="link2"><IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></A><BR>
 
 <A href="TestRecInteraction.html" ><B><I>link to TestRecInteraction.html<IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></I></B></A><BR>
 
@@ -95,16 +113,16 @@ third<br>
 	<OPTION VALUE="sel-d" >d</OPTION>
 </SELECT>
 name: 
-<INPUT NAME="realname" >
-
-
+<INPUT NAME="realname" onclick='console.log("attribute handler")'>
 <script type="text/javascript">		
 	//document.write('<scr' + 'ipt type="text/javascript" src="script_operator.js"></scr' + 'ipt>');
 	//document.forms[0].realname.addEventListener('click', function(){console.log('anonymous handler')}, false);	
 	//document.forms[0].realname.removeEventListener('click', function(){console.log('anonymous handler')}, false);	
-	var _func = function(){console.log('anonymous function')};
+	
 	//_func = rewrite(_func);
-	document.forms[0].realname.addEventListener('click', _func, false);
+	//document.theForm.realname.onclick=function(){console.log('property handler')};
+	document.theForm.realname.addEventListener('click', _func, false);
+	function _func(){console.log('dynamic handler')};
 	//document.forms[0].realname.removeEventListener('click', _func, false);
 	
 	//hello_4 = rewrite(hello_4);
