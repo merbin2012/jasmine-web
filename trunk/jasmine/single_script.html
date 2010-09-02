@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Test Trace User Interaction</title>
+</head>
+<body name="body" >
+<IMG SRC="javascript:alert('XSS');">
+
+<A HREF="TestRecInteraction.html"  name="link2"><IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></A><BR>
+
+<A href="TestRecInteraction.html" ><B><I>link to TestRecInteraction.html<IMG SRC="button_in_cart.gif" WIDTH="120" HEIGHT="22" BORDER="0" ALT=""></I></B></A><BR>
+
+<FORM ACTION="" METHOD=POST name="theForm">
+<div name="div_1">
+content: <br>
+this is the first line<br>
+and second<br>
+third<br>
+</div>	
+
+<SELECT NAME="ele-sel">
+	<option selected="selected" value="">Please Select</option>
+	<OPTION VALUE="sel-a" >a</OPTION>
+	<OPTION VALUE="sel-b" >b</OPTION>
+	<OPTION VALUE="sel-c" >c</OPTION>
+	<OPTION VALUE="sel-d" >d</OPTION>
+</SELECT>
+name: <INPUT NAME="realname" onclick='alert("handler as attribute")'><BR>
+nick: <INPUT NAME="nickname" >
+
+Email:<INPUT NAME="_email">
+
+destination: <INPUT type= "password" NAME="desination"><br>
+
+<input type="radio" checked="" value="38" name="id[11]"/>
+1. Soft Carry Case<br/>
+
+
+
+<input type="radio" value="39" name="id[11]"/>
+2. Hard Shell Carry Case (+US$2.00)<br/><br/>
+
+<input type="radio" name="group1" value="Milk"> Milk <br>
+<input type="radio" name="group1" value="Butter"> Butter <br>
+<input type="radio" name="group1" value="Cheese"> Cheese <br>
+<input type="checkbox" value="1" id="checkout-ship-same" name="checkout-ship-same"/>
+
+<input type="hidden" value="77" name="products_id"/>
+<input type="image" border="0" title=" Add to Cart " alt="Add to Cart" src="button_in_cart.gif"/>
+
+<TEXTAREA NAME="textarea" ROWS="3" COLS="5"></TEXTAREA> <br>
+
+<input type="file" name="aFile"><br>
+
+<IMG SRC="logo.png" WIDTH="250" HEIGHT="61" BORDER="0" ALT="">
+
+<TEXTAREA NAME="" ROWS="5" COLS="15" id=t-area></TEXTAREA> <br>
+
+
+
+<INPUT TYPE="reset"><input type="button" VALUE="do nothing" >
+</FORM>
+<script type="text/javascript">
+	var scripts = document.getElementsByTagName("script");
+	var cntr = scripts.length;
+	console.log( cntr + ' scripts' );
+	while ( cntr ) {
+		var curScript = scripts[cntr-1];
+		//console.log(curScript.src.toString());
+		console.log('script source: ' + curScript.innerHTML + '\n---');
+		cntr--;
+	}
+</script>
+
+</BODY>
+
+
+
+</html>

@@ -1,4 +1,4 @@
-var TstH = {
+var TstH = function(){
 	hello_1: function (){
 		var str = 'stringAndSubstring';
 		var sub =  str.substring(10)
