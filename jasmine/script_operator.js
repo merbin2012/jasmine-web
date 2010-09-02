@@ -15,7 +15,7 @@ var SO = {
 		while ( cntr ) {
 			var curScript = scripts[cntr-1];
 			console.log(curScript.src.toString());
-			console.log('script source: ' + curScript.innerHTML);
+			console.log('script source: ' + curScript.innerHTML + '\n---');
 			cntr--;
 		}
 	},
