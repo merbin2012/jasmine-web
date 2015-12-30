@@ -1,0 +1,1 @@
+Monitor and analyze JavaScript programs's dynamic behavior.
